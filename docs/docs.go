@@ -15,6 +15,26 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/data": {
+            "get": {
+                "description": "Retrieve Get All Data",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "GetAllData"
+                ],
+                "summary": "Get all data",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AllData.KData"
+                        }
+                    }
+                }
+            }
+        },
         "/home_details": {
             "get": {
                 "description": "Retrieve all home details from MongoDB",
@@ -757,6 +777,27 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "AllData.KData": {
+            "type": "object",
+            "properties": {
+                "home_detials": {
+                    "type": "array",
+                    "items": {}
+                },
+                "projects_list": {
+                    "type": "array",
+                    "items": {}
+                },
+                "services": {
+                    "type": "array",
+                    "items": {}
+                },
+                "social_media": {
+                    "type": "array",
+                    "items": {}
+                }
+            }
+        },
         "HomeDetails.HomeDetails": {
             "type": "object",
             "required": [

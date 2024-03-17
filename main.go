@@ -15,6 +15,7 @@ import (
 	home_details "main/features/home_details"
 	projects "main/features/projects_list"
 	social_media "main/features/social_media"
+	alldata "main/features/all_data"
 )
 
 // @title User API
@@ -95,6 +96,8 @@ func main() {
 			sRoute.DELETE("/:id", services.DeleteServices)
 			sRoute.DELETE("/", services.DeleteAllServices)
 		}
+
+		v1.GET("/data", alldata.GetAllData)
 
 	}
 

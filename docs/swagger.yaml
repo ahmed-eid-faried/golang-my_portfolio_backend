@@ -1,5 +1,20 @@
 basePath: /api/v1
 definitions:
+  AllData.KData:
+    properties:
+      home_detials:
+        items: {}
+        type: array
+      projects_list:
+        items: {}
+        type: array
+      services:
+        items: {}
+        type: array
+      social_media:
+        items: {}
+        type: array
+    type: object
   HomeDetails.HomeDetails:
     properties:
       hd_aboutmedesc:
@@ -155,6 +170,19 @@ info:
   title: User API
   version: "1.0"
 paths:
+  /data:
+    get:
+      description: Retrieve Get All Data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/AllData.KData'
+      summary: Get all data
+      tags:
+      - GetAllData
   /home_details:
     delete:
       description: Delete all home details from MongoDB
