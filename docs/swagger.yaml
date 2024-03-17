@@ -1,0 +1,646 @@
+basePath: /api/v1
+definitions:
+  HomeDetails.HomeDetails:
+    properties:
+      hd_aboutmedesc:
+        example: I am a software engineer.
+        type: string
+      hd_aboutmename:
+        example: About Me
+        type: string
+      hd_cv:
+        example: http://example.com/cv.pdf
+        type: string
+      hd_desc:
+        example: Description of my home details
+        type: string
+      hd_id:
+        type: string
+      hd_image:
+        example: http://example.com/image.jpg
+        type: string
+      hd_name:
+        example: My Home Details
+        type: string
+    required:
+    - hd_aboutmedesc
+    - hd_aboutmename
+    - hd_cv
+    - hd_desc
+    - hd_image
+    - hd_name
+    type: object
+  Projects.Project:
+    properties:
+      pl_appstore:
+        example: http://example.com/appstore
+        type: string
+      pl_body:
+        example: Description of my project
+        type: string
+      pl_cli:
+        example: http://example.com/cli
+        type: string
+      pl_doc:
+        example: http://example.com/doc
+        type: string
+      pl_embedded:
+        example: http://example.com/embedded
+        type: string
+      pl_github:
+        example: http://example.com/github
+        type: string
+      pl_googleplay:
+        example: http://example.com/googleplay
+        type: string
+      pl_id:
+        type: string
+      pl_image:
+        example: http://example.com/image.jpg
+        type: string
+      pl_linux:
+        example: http://example.com/linux
+        type: string
+      pl_macos:
+        example: http://example.com/macos
+        type: string
+      pl_package:
+        example: http://example.com/package
+        type: string
+      pl_title:
+        example: My Project
+        type: string
+      pl_windows:
+        example: http://example.com/windows
+        type: string
+    required:
+    - pl_appstore
+    - pl_body
+    - pl_cli
+    - pl_doc
+    - pl_embedded
+    - pl_github
+    - pl_googleplay
+    - pl_image
+    - pl_linux
+    - pl_macos
+    - pl_package
+    - pl_title
+    - pl_windows
+    type: object
+  Services.Service:
+    properties:
+      services_assets:
+        example: http://example.com/assets/service.jpg
+        type: string
+      services_body:
+        example: We specialize in building responsive and user-friendly websites.
+        type: string
+      services_id:
+        type: string
+      services_title:
+        example: Web Development
+        type: string
+      services_type:
+        example: Development
+        type: string
+    required:
+    - services_assets
+    - services_body
+    - services_title
+    - services_type
+    type: object
+  SocialMedia.SocialMedia:
+    properties:
+      sm_cv:
+        example: ahmed_mady_cv.pdf
+        type: string
+      sm_email:
+        example: ahmed.mady@example.com
+        type: string
+      sm_facebook:
+        example: ahmed.mady.facebook
+        type: string
+      sm_github:
+        example: ahmed_mady_github
+        type: string
+      sm_id:
+        type: string
+      sm_instagram:
+        example: ahmed_mady_instagram
+        type: string
+      sm_linkedin:
+        example: john-doe-linkedin
+        type: string
+      sm_twitter:
+        example: '@ahmed_mady_twitter'
+        type: string
+      sm_whatsapp:
+        example: "123456789"
+        type: string
+    required:
+    - sm_cv
+    - sm_email
+    - sm_facebook
+    - sm_github
+    - sm_instagram
+    - sm_linkedin
+    - sm_twitter
+    - sm_whatsapp
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API for user management
+  title: User API
+  version: "1.0"
+paths:
+  /home_details:
+    delete:
+      description: Delete all home details from MongoDB
+      responses:
+        "204":
+          description: No Content
+      summary: Delete all home details
+      tags:
+      - HomeDetails
+    get:
+      description: Retrieve all home details from MongoDB
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/HomeDetails.HomeDetails'
+            type: array
+      summary: Get all home details
+      tags:
+      - HomeDetails
+    post:
+      consumes:
+      - application/json
+      description: Create a new home detail in MongoDB
+      parameters:
+      - description: Home detail object
+        in: body
+        name: homeDetail
+        required: true
+        schema:
+          $ref: '#/definitions/HomeDetails.HomeDetails'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: ID of the created home detail
+          schema:
+            type: string
+      summary: Create a new home detail
+      tags:
+      - HomeDetails
+  /home_details/{id}:
+    delete:
+      description: Delete a home detail by its ID from MongoDB
+      parameters:
+      - description: Home detail ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+      summary: Delete a home detail
+      tags:
+      - HomeDetails
+    get:
+      description: Retrieve a home detail by its ID from MongoDB
+      parameters:
+      - description: Home detail ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/HomeDetails.HomeDetails'
+      summary: Get a home detail by ID
+      tags:
+      - HomeDetails
+    put:
+      consumes:
+      - application/json
+      description: Update an existing home detail in MongoDB
+      parameters:
+      - description: Home detail ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated home detail object
+        in: body
+        name: homeDetail
+        required: true
+        schema:
+          $ref: '#/definitions/HomeDetails.HomeDetails'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Update a home detail
+      tags:
+      - HomeDetails
+  /home_details/search:
+    get:
+      description: Search home details in MongoDB based on a keyword
+      parameters:
+      - description: Search keyword
+        in: query
+        name: keyword
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/HomeDetails.HomeDetails'
+            type: array
+      summary: Search home details
+      tags:
+      - HomeDetails
+  /projects:
+    delete:
+      description: Delete all projects from MongoDB
+      responses:
+        "204":
+          description: No Content
+      summary: Delete all projects
+      tags:
+      - Projects
+    get:
+      description: Retrieve all projects from MongoDB
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Projects.Project'
+            type: array
+      summary: Get all projects
+      tags:
+      - Projects
+    post:
+      consumes:
+      - application/json
+      description: Create a new project in MongoDB
+      parameters:
+      - description: Project object
+        in: body
+        name: project
+        required: true
+        schema:
+          $ref: '#/definitions/Projects.Project'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: ID of the created project
+          schema:
+            type: string
+      summary: Create a new project
+      tags:
+      - Projects
+  /projects/{id}:
+    delete:
+      description: Delete a project by its ID from MongoDB
+      parameters:
+      - description: Project ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+      summary: Delete a project
+      tags:
+      - Projects
+    get:
+      description: Retrieve a project by its ID from MongoDB
+      parameters:
+      - description: Project ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Projects.Project'
+      summary: Get a project by ID
+      tags:
+      - Projects
+    put:
+      consumes:
+      - application/json
+      description: Update an existing project in MongoDB
+      parameters:
+      - description: Project ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated project object
+        in: body
+        name: project
+        required: true
+        schema:
+          $ref: '#/definitions/Projects.Project'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Update a project
+      tags:
+      - Projects
+  /projects/search:
+    get:
+      description: Search projects in MongoDB based on a keyword
+      parameters:
+      - description: Search keyword
+        in: query
+        name: keyword
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Projects.Project'
+            type: array
+      summary: Search projects
+      tags:
+      - Projects
+  /services:
+    delete:
+      description: Remove all Services from the database
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+      summary: Remove all Services
+      tags:
+      - Services
+    get:
+      description: Get all Services
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Services.Service'
+            type: array
+      summary: Get All Services
+      tags:
+      - Services
+    post:
+      consumes:
+      - application/json
+      description: Create a Service
+      parameters:
+      - description: Service object
+        in: body
+        name: service
+        required: true
+        schema:
+          $ref: '#/definitions/Services.Service'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+      summary: Create a Service
+      tags:
+      - Services
+  /services/{id}:
+    delete:
+      description: Delete a Service by ID
+      parameters:
+      - description: Service ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+      summary: Delete a Service
+      tags:
+      - Services
+    get:
+      description: Get a Service by ID
+      parameters:
+      - description: Service ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Services.Service'
+      summary: Get a Service by ID
+      tags:
+      - Services
+    put:
+      consumes:
+      - application/json
+      description: Update a Service by ID
+      parameters:
+      - description: Service ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Service object
+        in: body
+        name: service
+        required: true
+        schema:
+          $ref: '#/definitions/Services.Service'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Update a Service
+      tags:
+      - Services
+  /services/search:
+    get:
+      description: Search services
+      parameters:
+      - description: Search keyword
+        in: query
+        name: keyword
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Services.Service'
+            type: array
+      summary: Search services
+      tags:
+      - Services
+  /social_media:
+    delete:
+      description: Delete all social media details from MongoDB
+      responses:
+        "204":
+          description: No Content
+      summary: Delete all social media details
+      tags:
+      - SocialMediaDetails
+    get:
+      description: Retrieve all social media details from MongoDB
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SocialMedia.SocialMedia'
+            type: array
+      summary: Get all social media details
+      tags:
+      - SocialMediaDetails
+    post:
+      consumes:
+      - application/json
+      description: Create a new social media detail in MongoDB
+      parameters:
+      - description: Social media detail object
+        in: body
+        name: socialMediaDetail
+        required: true
+        schema:
+          $ref: '#/definitions/SocialMedia.SocialMedia'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: ID of the created social media detail
+          schema:
+            type: string
+      summary: Create a new social media detail
+      tags:
+      - SocialMediaDetails
+  /social_media/{id}:
+    delete:
+      description: Delete a social media detail by its ID from MongoDB
+      parameters:
+      - description: Social media detail ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+      summary: Delete a social media detail
+      tags:
+      - SocialMediaDetails
+    get:
+      description: Retrieve a social media detail by its ID from MongoDB
+      parameters:
+      - description: Social media detail ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SocialMedia.SocialMedia'
+      summary: Get a social media detail by ID
+      tags:
+      - SocialMediaDetails
+    put:
+      consumes:
+      - application/json
+      description: Update an existing social media detail in MongoDB
+      parameters:
+      - description: Social media detail ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated social media detail object
+        in: body
+        name: socialMediaDetail
+        required: true
+        schema:
+          $ref: '#/definitions/SocialMedia.SocialMedia'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Update a social media detail
+      tags:
+      - SocialMediaDetails
+  /social_media/search:
+    get:
+      description: Search social media details in MongoDB based on a keyword
+      parameters:
+      - description: Search keyword
+        in: query
+        name: keyword
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SocialMedia.SocialMedia'
+            type: array
+      summary: Search social media details
+      tags:
+      - SocialMediaDetails
+swagger: "2.0"

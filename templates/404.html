@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Dark background color */
+            color: #fff; /* White text color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            opacity: 0; /* Initially hidden */
+            animation: fade-in 1s ease forwards; /* Animation to fade in */
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #2196F3; /* Blue header color */
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #9c27b0; /* Purple paragraph color */
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #000; /* Black button background color */
+            color: #fff;
+            font-size: 1em;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #333; /* Darker black on hover */
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404 - Page Not Found</h1>
+        <p>The page you requested does not exist.</p>
+        <a href="/" class="button">Back to Home</a>
+    </div>
+</body>
+</html>
