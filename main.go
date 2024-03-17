@@ -12,10 +12,10 @@ import (
 	// sqldb "main/core/db/sql"
 	_ "main/docs" // This is required for Swagger to find your documentation
 	services "main/features/Services"
+	alldata "main/features/all_data"
 	home_details "main/features/home_details"
 	projects "main/features/projects_list"
 	social_media "main/features/social_media"
-	alldata "main/features/all_data"
 )
 
 // @title User API
@@ -24,6 +24,10 @@ import (
 // @host golang-my-portfolio-backend.onrender.com
 // @BasePath /api/v1
 func main() {
+
+	// localhost:8080
+	// golang-my-portfolio-backend.onrender.com
+
 	InitDataBase()
 
 	router := gin.Default()

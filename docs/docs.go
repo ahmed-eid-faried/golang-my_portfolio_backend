@@ -780,22 +780,10 @@ const docTemplate = `{
         "AllData.KData": {
             "type": "object",
             "properties": {
-                "home_detials": {
-                    "type": "array",
-                    "items": {}
-                },
-                "projects_list": {
-                    "type": "array",
-                    "items": {}
-                },
-                "services": {
-                    "type": "array",
-                    "items": {}
-                },
-                "social_media": {
-                    "type": "array",
-                    "items": {}
-                }
+                "home_detials": {},
+                "projects_list": {},
+                "services": {},
+                "social_media": {}
             }
         },
         "HomeDetails.HomeDetails": {

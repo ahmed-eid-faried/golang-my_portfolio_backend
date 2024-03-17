@@ -2,18 +2,10 @@ basePath: /api/v1
 definitions:
   AllData.KData:
     properties:
-      home_detials:
-        items: {}
-        type: array
-      projects_list:
-        items: {}
-        type: array
-      services:
-        items: {}
-        type: array
-      social_media:
-        items: {}
-        type: array
+      home_detials: {}
+      projects_list: {}
+      services: {}
+      social_media: {}
     type: object
   HomeDetails.HomeDetails:
     properties:
