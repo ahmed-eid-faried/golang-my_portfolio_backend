@@ -22,7 +22,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "GetAllData"
+                    "AllData"
                 ],
                 "summary": "Get all data",
                 "responses": {
@@ -31,6 +31,18 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/AllData.KData"
                         }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete all Data from MongoDB",
+                "tags": [
+                    "AllData"
+                ],
+                "summary": "Delete all Data",
+                "responses": {
+                    "204": {
+                        "description": "No Content"
                     }
                 }
             }
@@ -841,6 +853,7 @@ const docTemplate = `{
                 "pl_macos",
                 "pl_package",
                 "pl_title",
+                "pl_web",
                 "pl_windows"
             ],
             "properties": {
@@ -894,6 +907,10 @@ const docTemplate = `{
                 "pl_title": {
                     "type": "string",
                     "example": "My Project"
+                },
+                "pl_web": {
+                    "type": "string",
+                    "example": "http://example.com/web"
                 },
                 "pl_windows": {
                     "type": "string",

@@ -77,6 +77,9 @@ definitions:
       pl_title:
         example: My Project
         type: string
+      pl_web:
+        example: http://example.com/web
+        type: string
       pl_windows:
         example: http://example.com/windows
         type: string
@@ -93,6 +96,7 @@ definitions:
     - pl_macos
     - pl_package
     - pl_title
+    - pl_web
     - pl_windows
     type: object
   Services.Service:
@@ -163,6 +167,14 @@ info:
   version: "1.0"
 paths:
   /data:
+    delete:
+      description: Delete all Data from MongoDB
+      responses:
+        "204":
+          description: No Content
+      summary: Delete all Data
+      tags:
+      - AllData
     get:
       description: Retrieve Get All Data
       produces:
@@ -174,7 +186,7 @@ paths:
             $ref: '#/definitions/AllData.KData'
       summary: Get all data
       tags:
-      - GetAllData
+      - AllData
   /home_details:
     delete:
       description: Delete all home details from MongoDB
