@@ -13,7 +13,7 @@ import (
 // HomeDetails represents the structure of an HomeDetails
 
 type HomeDetails struct {
-	ID            string   `json:"hd_id" bson:"_id,omitempty"`
+	ID            string `json:"hd_id" bson:"_id,omitempty"`
 	HdName        string `json:"hd_name" example:"My Home Details" validate:"required"`
 	HdDesc        string `json:"hd_desc" example:"Description of my home details" validate:"required"`
 	HdImage       string `json:"hd_image" example:"http://example.com/image.jpg" validate:"required"`
@@ -31,20 +31,12 @@ func InitData() {
 	// Define the list of home details
 	homeDetails := []interface{}{
 		HomeDetails{
-			HdName:        "My Home Details",
-			HdDesc:        "Description of my home details",
-			HdImage:       "http://example.com/image.jpg",
-			HdCv:          "http://example.com/cv.pdf",
+			HdName:        "I am a software engineer.",
+			HdDesc:        "Passionate Flutter developer with expertise in Dart and Flutter, dedicated to creating high-quality, user-centric mobile apps. Committed to delivering innovative solutions that enhance user experiences and drive business success.",
+			HdImage:       "https://i.ibb.co/rxB4Gnm/image.jpg",
+			HdCv:          "https://drive.google.com/file/d/1q5Vg44gRgH9Er4mCN5lYJRlVpURrBIdY/view?usp=sharing",
 			HdAboutmename: "About Me",
-			HdAboutmedesc: "I am a software engineer.",
-		},
-		HomeDetails{
-			HdName:        "Another Home Details",
-			HdDesc:        "Description of another home details",
-			HdImage:       "http://example.com/image2.jpg",
-			HdCv:          "http://example.com/cv2.pdf",
-			HdAboutmename: "About Me 2",
-			HdAboutmedesc: "I am another software engineer.",
+			HdAboutmedesc: "Experienced Flutter Developer skilled in Dart, OOP, and Solid Principles, proficient in problem-solving and data structures. Demonstrated expertise in Flutter, including animations, notifications, and deployment, coupled with strong proficiency in handling RESTful APIs, JSON, Postman, and Thunder Client, along with MySQL and PHP for API integration. Well-versed in state management techniques, including Getx, Provider, and Bloc pattern, with a solid grasp of design patterns, such as MVC, and a commitment to clean code and clean architecture. Proficient in Firebase services, debugging, various testing methodologies, Git, GitHub, UI/UX tools like Adobe XD and Figma, and adept in communication in English. Experienced in CI/CD, Agile development methodologies, and working with Jira for efficient project management.",
 		},
 	}
 
@@ -55,12 +47,12 @@ func InitData() {
 		log.Println("Error inserting home details:", err)
 	}
 
-	// Generate and insert fake home details
-	fakeHomeDetails := GenerateFakeHomeDetails(20)
-	_, err = mongodb.DB.Collection("home_details").InsertMany(CTX, fakeHomeDetails)
-	if err != nil {
-		log.Println("Error inserting fake home details:", err)
-	}
+	// // Generate and insert fake home details
+	// fakeHomeDetails := GenerateFakeHomeDetails(20)
+	// _, err = mongodb.DB.Collection("home_details").InsertMany(CTX, fakeHomeDetails)
+	// if err != nil {
+	// 	log.Println("Error inserting fake home details:", err)
+	// }
 }
 
 // GenerateFakeHomeDetails generates fake home details

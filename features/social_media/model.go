@@ -32,26 +32,17 @@ func InitData() {
 	// Define the list of social media details
 	socialMediaDetails := []interface{}{
 		SocialMedia{
-			SmFacebook:  "ahmed.mady.facebook",
-			SmWhatsapp:  "123456789",
-			SmGithub:    "ahmed_mady_github",
-			SmLinkedin:  "john-doe-linkedin",
-			SmEmail:     "ahmed.mady@example.com",
-			SmTwitter:   "@ahmed_mady_twitter",
-			SmCv:        "ahmed_mady_cv.pdf",
-			SmInstagram: "ahmed_mady_instagram",
-		},
-		SocialMedia{
-			SmFacebook:  "jane.doe.facebook",
-			SmWhatsapp:  "987654321",
-			SmGithub:    "jane_doe_github",
-			SmLinkedin:  "jane-doe-linkedin",
-			SmEmail:     "jane.doe@example.com",
-			SmTwitter:   "@jane_doe_twitter",
-			SmCv:        "jane_doe_cv.pdf",
-			SmInstagram: "jane_doe_instagram",
+			SmWhatsapp:  "https://wa.me/+201555663045?text=from%20my%20website",
+			SmFacebook:  "https://www.facebook.com/ahmedeed.eed.7",
+			SmGithub:    "https://github.com/ahmed-eid-faried",
+			SmLinkedin:  "https://www.linkedin.com/in/ahmed-mady-a16715228/",
+			SmEmail:     "https://mail.google.com/mail/u/0/?fs=1&to=ahmed.eid.ac.1.edu@gmail.com&su=FromWebsite&tf=cm",
+			SmCv:        "https://drive.google.com/file/d/1q5Vg44gRgH9Er4mCN5lYJRlVpURrBIdY/view?usp=sharing",
+			SmInstagram: "https://www.instagram.com/ahmed_eid_ac/",
+			SmTwitter:   "https://twitter.com/AHMEDMA65756172/",
 		},
 	}
+	// SmEmail:     "ahmed.eid.ac.1.edu@gmail.com",
 
 	// Insert provided social media details into MongoDB
 	_, err := mongodb.DB.Collection("social_media").InsertMany(CTX, socialMediaDetails)
@@ -60,12 +51,12 @@ func InitData() {
 		log.Println("Error inserting social media details:", err)
 	}
 
-	// Generate and insert fake social media details
-	fakeSocialMediaDetails := GenerateFakeSocialMediaDetails(20)
-	_, err = mongodb.DB.Collection("social_media").InsertMany(CTX, fakeSocialMediaDetails)
-	if err != nil {
-		log.Println("Error inserting fake social media details:", err)
-	}
+	// // Generate and insert fake social media details
+	// fakeSocialMediaDetails := GenerateFakeSocialMediaDetails(20)
+	// _, err = mongodb.DB.Collection("social_media").InsertMany(CTX, fakeSocialMediaDetails)
+	// if err != nil {
+	// 	log.Println("Error inserting fake social media details:", err)
+	// }
 }
 
 // GenerateFakeSocialMediaDetails generates fake social media details

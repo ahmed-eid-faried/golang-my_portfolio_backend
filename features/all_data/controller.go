@@ -26,7 +26,7 @@ var (
 
 // @Summary Get all data
 // @Description Retrieve Get All Data
-// @Tags GetAllData
+// @Tags AllData
 // @Produce json
 // @Success 200 {object} KData
 // @Router /data [get]
@@ -42,6 +42,41 @@ func GetAllData(c *gin.Context) {
 		ProjectsList: projects,
 		Services:     services,
 	})
+}
+
+// @Summary Delete all Data
+// @Description Delete all Data from MongoDB
+// @Tags AllData
+// @Success 204
+// @Router /data [delete]
+func DeleteAllData(c *gin.Context) {
+	////////////////////////************home details*************\\\\\\\\\\\\\\\\\\\\\\\\\\
+	_, err := mongodb.DB.Collection("home_details").DeleteMany(context.Background(), bson.M{})
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error deleting home details"})
+		return
+	}
+	////////////////////////*************projects************\\\\\\\\\\\\\\\\\\\\\\\\\\	////////////////////////*************************\\\\\\\\\\\\\\\\\\\\\\\\\\
+	_, err = mongodb.DB.Collection("projects_list").DeleteMany(context.Background(), bson.M{})
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error deleting projects"})
+		return
+	}
+	////////////////////////************services*************\\\\\\\\\\\\\\\\\\\\\\\\\\	////////////////////////*************************\\\\\\\\\\\\\\\\\\\\\\\\\\
+	_, err = mongodb.DB.Collection("services").DeleteMany(context.Background(), bson.M{})
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error deleting services"})
+		return
+	}
+	////////////////////////*************social media details************\\\\\\\\\\\\\\\\\\\\\\\\\\	////////////////////////*************************\\\\\\\\\\\\\\\\\\\\\\\\\\
+	_, err = mongodb.DB.Collection("social_media").DeleteMany(context.Background(), bson.M{})
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error deleting social media details"})
+		return
+	}
+	////////////////////////*************************\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+	c.Status(http.StatusNoContent)
 }
 
 func GetListMongodb(c *gin.Context, collection string, slicePtr interface{}) interface{} {

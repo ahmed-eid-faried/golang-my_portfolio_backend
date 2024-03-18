@@ -100,8 +100,11 @@ func main() {
 			sRoute.DELETE("/:id", services.DeleteServices)
 			sRoute.DELETE("/", services.DeleteAllServices)
 		}
-
-		v1.GET("/data", alldata.GetAllData)
+		data := v1.Group("/data")
+		{
+			data.GET("/", alldata.GetAllData)
+			data.DELETE("/", alldata.DeleteAllData)
+		}
 
 	}
 

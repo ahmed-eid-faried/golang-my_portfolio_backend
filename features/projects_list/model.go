@@ -12,7 +12,7 @@ import (
 
 // Project represents the structure of a Project
 type Project struct {
-	ID           string    `json:"pl_id" bson:"_id,omitempty"`
+	ID           string `json:"pl_id" bson:"_id,omitempty"`
 	PlTitle      string `json:"pl_title" example:"My Project" validate:"required"`
 	PlBody       string `json:"pl_body" example:"Description of my project" validate:"required"`
 	PlImage      string `json:"pl_image" example:"http://example.com/image.jpg" validate:"required"`
@@ -26,6 +26,7 @@ type Project struct {
 	PlLinux      string `json:"pl_linux" example:"http://example.com/linux" validate:"required"`
 	PlWindows    string `json:"pl_windows" example:"http://example.com/windows" validate:"required"`
 	PlMacos      string `json:"pl_macos" example:"http://example.com/macos" validate:"required"`
+	PlWeb        string `json:"pl_web" example:"http://example.com/web" validate:"required"`
 }
 
 var CTX context.Context = context.Background()
@@ -37,34 +38,20 @@ func InitData() {
 	// Define the list of projects
 	projects := []interface{}{
 		Project{
-			PlTitle:      "My Project",
-			PlBody:       "Description of my project",
+			PlTitle:      "PORTFOLIO",
+			PlBody:       "A Flutter app designed to showcase professional works and projects, serving as a digital portfolio or resume.",
 			PlImage:      "http://example.com/image.jpg",
-			PlGoogleplay: "http://example.com/googleplay",
-			PlAppstore:   "http://example.com/appstore",
-			PlGithub:     "http://example.com/github",
-			PlDoc:        "http://example.com/doc",
-			PlPackage:    "http://example.com/package",
-			PlCli:        "http://example.com/cli",
-			PlEmbedded:   "http://example.com/embedded",
-			PlLinux:      "http://example.com/linux",
-			PlWindows:    "http://example.com/windows",
-			PlMacos:      "http://example.com/macos",
-		},
-		Project{
-			PlTitle:      "Another Project",
-			PlBody:       "Description of another project",
-			PlImage:      "http://example.com/another_image.jpg",
-			PlGoogleplay: "http://example.com/another_googleplay",
-			PlAppstore:   "http://example.com/another_appstore",
-			PlGithub:     "http://example.com/another_github",
-			PlDoc:        "http://example.com/another_doc",
-			PlPackage:    "http://example.com/another_package",
-			PlCli:        "http://example.com/another_cli",
-			PlEmbedded:   "http://example.com/another_embedded",
-			PlLinux:      "http://example.com/another_linux",
-			PlWindows:    "http://example.com/another_windows",
-			PlMacos:      "http://example.com/another_macos",
+			PlGoogleplay: "https://play.google.com/store/apps/details?id=com.amadytech.amadytech",
+			PlGithub:     "https://github.com/ahmed-eid-faried/my_portfolio",
+			PlDoc:        "https://www.youtube.com/watch?v=ovRCTtGSyV8",
+			PlAppstore:   "",
+			PlPackage:    "",
+			PlCli:        "",
+			PlEmbedded:   "",
+			PlLinux:      "",
+			PlWindows:    "",
+			PlMacos:      "",
+			PlWeb:        "",
 		},
 	}
 
@@ -76,14 +63,14 @@ func InitData() {
 		log.Println("Inserted", len(result.InsertedIDs), "projects successfully.")
 	}
 
-	// Generate and insert fake projects
-	fakeprojects := GenerateFakeprojects(20)
-	result, err = mongodb.DB.Collection("projects_list").InsertMany(CTX, fakeprojects)
-	if err != nil {
-		log.Println("Error inserting fake projects list:", err)
-	} else {
-		log.Println("Inserted", len(result.InsertedIDs), "fake projects successfully.")
-	}
+	// // Generate and insert fake projects
+	// fakeprojects := GenerateFakeprojects(20)
+	// result, err = mongodb.DB.Collection("projects_list").InsertMany(CTX, fakeprojects)
+	// if err != nil {
+	// 	log.Println("Error inserting fake projects list:", err)
+	// } else {
+	// 	log.Println("Inserted", len(result.InsertedIDs), "fake projects successfully.")
+	// }
 }
 
 // GenerateFakeprojects generates fake projects
