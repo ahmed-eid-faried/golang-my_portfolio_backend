@@ -30,7 +30,7 @@ func InitData() {
 		Service{
 			ServicesTitle:  "Web Development",
 			ServicesBody:   "We specialize in building responsive and user-friendly websites.",
-			ServicesAssets: "http://example.com/image.jpg",
+			ServicesAssets: "https://i.ibb.co/rxB4Gnm/image.jpg",
 			ServicesType:   "Development",
 		},
 		// Service{
