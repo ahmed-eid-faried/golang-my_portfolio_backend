@@ -6,7 +6,7 @@
         "contact": {},
         "version": "1.0"
     },
-    "host": "golang-my-portfolio-backend.onrender.com",
+    "host": "localhost:8080",
     "basePath": "/api/v1",
     "paths": {
         "/data": {
@@ -28,18 +28,6 @@
                     }
                 }
             },
-            "post": {
-                "description": "Delete all Data from MongoDB",
-                "tags": [
-                    "AllData"
-                ],
-                "summary": "Put All Data",
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            },
             "delete": {
                 "description": "Delete all Data from MongoDB",
                 "tags": [
@@ -49,6 +37,20 @@
                 "responses": {
                     "204": {
                         "description": "No Content"
+                    }
+                }
+            }
+        },
+        "/data/init": {
+            "get": {
+                "description": "init all Data from MongoDB",
+                "tags": [
+                    "AllData"
+                ],
+                "summary": "Put All Data",
+                "responses": {
+                    "200": {
+                        "description": "OK"
                     }
                 }
             }

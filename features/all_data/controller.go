@@ -46,10 +46,10 @@ func GetAllData(c *gin.Context) {
 }
 
 // @Summary Put All Data
-// @Description Delete all Data from MongoDB
+// @Description init all Data from MongoDB
 // @Tags AllData
 // @Success 200
-// @Router /data [post]
+// @Router /data/init [get]
 func PostAllData(c *gin.Context) {
 	core.InitDataBase()
 	c.Status(http.StatusNoContent)

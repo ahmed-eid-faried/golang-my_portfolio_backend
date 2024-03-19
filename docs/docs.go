@@ -34,18 +34,6 @@ const docTemplate = `{
                     }
                 }
             },
-            "post": {
-                "description": "Delete all Data from MongoDB",
-                "tags": [
-                    "AllData"
-                ],
-                "summary": "Put All Data",
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            },
             "delete": {
                 "description": "Delete all Data from MongoDB",
                 "tags": [
@@ -55,6 +43,20 @@ const docTemplate = `{
                 "responses": {
                     "204": {
                         "description": "No Content"
+                    }
+                }
+            }
+        },
+        "/data/init": {
+            "get": {
+                "description": "init all Data from MongoDB",
+                "tags": [
+                    "AllData"
+                ],
+                "summary": "Put All Data",
+                "responses": {
+                    "200": {
+                        "description": "OK"
                     }
                 }
             }
@@ -1026,7 +1028,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "golang-my-portfolio-backend.onrender.com",
+	Host:             "localhost:8080",
 	BasePath:         "/api/v1",
 	Schemes:          []string{},
 	Title:            "User API",

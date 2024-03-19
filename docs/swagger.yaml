@@ -167,7 +167,7 @@ definitions:
     - sm_twitter
     - sm_whatsapp
     type: object
-host: golang-my-portfolio-backend.onrender.com
+host: localhost:8080
 info:
   contact: {}
   description: API for user management
@@ -195,8 +195,9 @@ paths:
       summary: Get all data
       tags:
       - AllData
-    post:
-      description: Delete all Data from MongoDB
+  /data/init:
+    get:
+      description: init all Data from MongoDB
       responses:
         "200":
           description: OK
