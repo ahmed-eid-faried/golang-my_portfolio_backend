@@ -167,7 +167,7 @@ definitions:
     - sm_twitter
     - sm_whatsapp
     type: object
-host: localhost:8080
+host: golang-my-portfolio-backend.onrender.com
 info:
   contact: {}
   description: API for user management
