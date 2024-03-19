@@ -34,6 +34,18 @@ const docTemplate = `{
                     }
                 }
             },
+            "post": {
+                "description": "Delete all Data from MongoDB",
+                "tags": [
+                    "AllData"
+                ],
+                "summary": "Put All Data",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
             "delete": {
                 "description": "Delete all Data from MongoDB",
                 "tags": [

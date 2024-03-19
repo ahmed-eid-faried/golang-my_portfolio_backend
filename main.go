@@ -10,6 +10,7 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 
 	// sqldb "main/core/db/sql"
+	mongodb "main/core/db/monodb"
 	_ "main/docs" // This is required for Swagger to find your documentation
 	services "main/features/Services"
 	alldata "main/features/all_data"
@@ -27,8 +28,9 @@ func main() {
 
 	// localhost:8080
 	// golang-my-portfolio-backend.onrender.com
-
-	InitDataBase()
+	// sqldb.Init()
+	mongodb.InitMongoDB()
+	// InitDataBase()
 
 	router := gin.Default()
 

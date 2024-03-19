@@ -195,6 +195,14 @@ paths:
       summary: Get all data
       tags:
       - AllData
+    post:
+      description: Delete all Data from MongoDB
+      responses:
+        "200":
+          description: OK
+      summary: Put All Data
+      tags:
+      - AllData
   /home_details:
     delete:
       description: Delete all home details from MongoDB

@@ -9,6 +9,7 @@ import (
 	_ "github.com/lib/pq"
 	"go.mongodb.org/mongo-driver/bson"
 
+	core "main/core"
 	mongodb "main/core/db/monodb"
 	_ "main/docs" // This is required for Swagger to find your documentation
 	services "main/features/Services"
@@ -42,6 +43,16 @@ func GetAllData(c *gin.Context) {
 		ProjectsList: projects,
 		Services:     services,
 	})
+}
+
+// @Summary Put All Data
+// @Description Delete all Data from MongoDB
+// @Tags AllData
+// @Success 200
+// @Router /data [post]
+func PostAllData(c *gin.Context) {
+	core.InitDataBase()
+	c.Status(http.StatusNoContent)
 }
 
 // @Summary Delete all Data
@@ -94,15 +105,4 @@ func GetListMongodb(c *gin.Context, collection string, slicePtr interface{}) int
 		return nil
 	}
 	return slicePtr
-}
-
-type KData struct {
-	SocialMedia  interface{} `json:"social_media"`
-	ProjectsList interface{} `json:"projects_list"`
-	HomeDetails  interface{} `json:"home_detials"`
-	Services     interface{} `json:"services"`
-	// SocialMedia  []social_media.SocialMedia `json:"social_media"`
-	// ProjectsList []projects.Project         `json:"projects_list"`
-	// HomeDetails  []home_details.HomeDetails `json:"home_detials"`
-	// Services     []services.Service         `json:"services"`
 }
