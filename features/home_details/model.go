@@ -43,7 +43,7 @@ func InitData() {
 			HdAboutmedesc: "Experienced Flutter Developer skilled in Dart, OOP, and Solid Principles, proficient in problem-solving and data structures. Demonstrated expertise in Flutter, including animations, notifications, and deployment, coupled with strong proficiency in handling RESTful APIs, JSON, Postman, and Thunder Client, along with MySQL and PHP for API integration. Well-versed in state management techniques, including Getx, Provider, and Bloc pattern, with a solid grasp of design patterns, such as MVC, and a commitment to clean code and clean architecture. Proficient in Firebase services, debugging, various testing methodologies, Git, GitHub, UI/UX tools like Adobe XD and Figma, and adept in communication in English. Experienced in CI/CD, Agile development methodologies, and working with Jira for efficient project management.",
 		},
 	}
-
+	mongodb.Index(mongodb.DB.Collection("home_details"))
 	// Insert provided home details into MongoDB
 	_, err := mongodb.DB.Collection("home_details").InsertMany(CTX, homeDetails)
 
@@ -53,6 +53,7 @@ func InitData() {
 
 	// // Generate and insert fake home details
 	// fakeHomeDetails := GenerateFakeHomeDetails(20)
+	// 	mongodb.Index(mongodb.DB.Collection("home_details"))
 	// _, err = mongodb.DB.Collection("home_details").InsertMany(CTX, fakeHomeDetails)
 	// if err != nil {
 	// 	log.Println("Error inserting fake home details:", err)

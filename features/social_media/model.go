@@ -47,7 +47,7 @@ func InitData() {
 		},
 	}
 	// SmEmail:     "ahmed.eid.ac.1.edu@gmail.com",
-
+	mongodb.Index(mongodb.DB.Collection("social_media"))
 	// Insert provided social media details into MongoDB
 	_, err := mongodb.DB.Collection("social_media").InsertMany(CTX, socialMediaDetails)
 
@@ -57,6 +57,7 @@ func InitData() {
 
 	// // Generate and insert fake social media details
 	// fakeSocialMediaDetails := GenerateFakeSocialMediaDetails(20)
+	// 	mongodb.Index(mongodb.DB.Collection("social_media"))
 	// _, err = mongodb.DB.Collection("social_media").InsertMany(CTX, fakeSocialMediaDetails)
 	// if err != nil {
 	// 	log.Println("Error inserting fake social media details:", err)

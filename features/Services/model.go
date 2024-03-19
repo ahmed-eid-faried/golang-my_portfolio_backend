@@ -96,6 +96,7 @@ func InitData() {
 			ServicesType:   "CLI Development",
 		},
 	}
+	mongodb.Index(mongodb.DB.Collection("services"))
 
 	// Insert provided services into MongoDB
 	_, err := mongodb.DB.Collection("services").InsertMany(CTX, services)
@@ -106,6 +107,7 @@ func InitData() {
 
 	// // Generate and insert fake services
 	// fakeServices := GenerateFakeServices(20)
+	// 	mongodb.Index(mongodb.DB.Collection("services"))
 	// _, err = mongodb.DB.Collection("services").InsertMany(CTX, fakeServices)
 	// if err != nil {
 	// 	log.Println("Error inserting fake services:", err)

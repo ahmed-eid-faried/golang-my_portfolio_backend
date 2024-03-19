@@ -6,6 +6,7 @@ import (
 
 	"github.com/bxcodec/faker/v3"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+
 	// "go.mongodb.org/mongo-driver/bson/primitive"
 
 	mongodb "main/core/db/monodb"
@@ -13,21 +14,21 @@ import (
 
 // Project represents the structure of a Project
 type Project struct {
-	ID            primitive.ObjectID  `json:"pl_id" bson:"_id,omitempty"`
-	PlTitle      string `json:"pl_title" example:"My Project" validate:"required"`
-	PlBody       string `json:"pl_body" example:"Description of my project" validate:"required"`
-	PlImage      string `json:"pl_image" example:"" validate:"required"`
-	PlGoogleplay string `json:"pl_googleplay" example:"http://example.com/googleplay" validate:"required"`
-	PlAppstore   string `json:"pl_appstore" example:"http://example.com/appstore" validate:"required"`
-	PlGithub     string `json:"pl_github" example:"http://example.com/github" validate:"required"`
-	PlDoc        string `json:"pl_doc" example:"http://example.com/doc" validate:"required"`
-	PlPackage    string `json:"pl_package" example:"http://example.com/package" validate:"required"`
-	PlCli        string `json:"pl_cli" example:"http://example.com/cli" validate:"required"`
-	PlEmbedded   string `json:"pl_embedded" example:"http://example.com/embedded" validate:"required"`
-	PlLinux      string `json:"pl_linux" example:"http://example.com/linux" validate:"required"`
-	PlWindows    string `json:"pl_windows" example:"http://example.com/windows" validate:"required"`
-	PlMacos      string `json:"pl_macos" example:"http://example.com/macos" validate:"required"`
-	PlWeb        string `json:"pl_web" example:"http://example.com/web" validate:"required"`
+	ID           primitive.ObjectID `json:"pl_id" bson:"_id,omitempty"`
+	PlTitle      string             `json:"pl_title" example:"My Project" validate:"required"`
+	PlBody       string             `json:"pl_body" example:"Description of my project" validate:"required"`
+	PlImage      string             `json:"pl_image" example:"" validate:"required"`
+	PlGoogleplay string             `json:"pl_googleplay" example:"http://example.com/googleplay" validate:"required"`
+	PlAppstore   string             `json:"pl_appstore" example:"http://example.com/appstore" validate:"required"`
+	PlGithub     string             `json:"pl_github" example:"http://example.com/github" validate:"required"`
+	PlDoc        string             `json:"pl_doc" example:"http://example.com/doc" validate:"required"`
+	PlPackage    string             `json:"pl_package" example:"http://example.com/package" validate:"required"`
+	PlCli        string             `json:"pl_cli" example:"http://example.com/cli" validate:"required"`
+	PlEmbedded   string             `json:"pl_embedded" example:"http://example.com/embedded" validate:"required"`
+	PlLinux      string             `json:"pl_linux" example:"http://example.com/linux" validate:"required"`
+	PlWindows    string             `json:"pl_windows" example:"http://example.com/windows" validate:"required"`
+	PlMacos      string             `json:"pl_macos" example:"http://example.com/macos" validate:"required"`
+	PlWeb        string             `json:"pl_web" example:"http://example.com/web" validate:"required"`
 }
 
 var CTX context.Context = context.Background()
@@ -167,6 +168,7 @@ func InitData() {
 			PlWeb:        "",
 		},
 	}
+	mongodb.Index(mongodb.DB.Collection("projects_list"))
 
 	// Insert provided project details into MongoDB
 	result, err := mongodb.DB.Collection("projects_list").InsertMany(CTX, projects)
@@ -178,6 +180,8 @@ func InitData() {
 
 	// // Generate and insert fake projects
 	// fakeprojects := GenerateFakeprojects(20)
+	// mongodb.Index(mongodb.DB.Collection("projects_list"))
+
 	// result, err = mongodb.DB.Collection("projects_list").InsertMany(CTX, fakeprojects)
 	// if err != nil {
 	// 	log.Println("Error inserting fake projects list:", err)

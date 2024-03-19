@@ -84,6 +84,7 @@ func CreateServices(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	mongodb.Index(mongodb.DB.Collection("services"))
 
 	result, err := mongodb.DB.Collection("services").InsertOne(context.Background(), service)
 	if err != nil {

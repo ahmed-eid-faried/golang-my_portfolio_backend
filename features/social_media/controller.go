@@ -79,6 +79,7 @@ func CreateSocialMediaDetails(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	mongodb.Index(mongodb.DB.Collection("social_media"))
 
 	result, err := mongodb.DB.Collection("social_media").InsertOne(context.Background(), socialMediaDetail)
 	if err != nil {
