@@ -9,6 +9,9 @@ definitions:
     type: object
   HomeDetails.HomeDetails:
     properties:
+      hd_aboutimage:
+        example: http://example.com/image.jpg
+        type: string
       hd_aboutmedesc:
         example: I am a software engineer.
         type: string
@@ -30,6 +33,7 @@ definitions:
         example: My Home Details
         type: string
     required:
+    - hd_aboutimage
     - hd_aboutmedesc
     - hd_aboutmename
     - hd_cv
@@ -63,7 +67,7 @@ definitions:
       pl_id:
         type: string
       pl_image:
-        example: http://example.com/image.jpg
+        example: ""
         type: string
       pl_linux:
         example: http://example.com/linux
@@ -143,6 +147,9 @@ definitions:
       sm_linkedin:
         example: john-doe-linkedin
         type: string
+      sm_medium:
+        example: '@ahmed_mady_medium'
+        type: string
       sm_twitter:
         example: '@ahmed_mady_twitter'
         type: string
@@ -156,10 +163,11 @@ definitions:
     - sm_github
     - sm_instagram
     - sm_linkedin
+    - sm_medium
     - sm_twitter
     - sm_whatsapp
     type: object
-host: golang-my-portfolio-backend.onrender.com
+host: localhost:8080
 info:
   contact: {}
   description: API for user management

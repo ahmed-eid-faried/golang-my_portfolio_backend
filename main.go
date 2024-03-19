@@ -21,7 +21,7 @@ import (
 // @title User API
 // @description API for user management
 // @version 1.0
-// @host golang-my-portfolio-backend.onrender.com
+// @host localhost:8080
 // @BasePath /api/v1
 func main() {
 

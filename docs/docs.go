@@ -801,6 +801,7 @@ const docTemplate = `{
         "HomeDetails.HomeDetails": {
             "type": "object",
             "required": [
+                "hd_aboutimage",
                 "hd_aboutmedesc",
                 "hd_aboutmename",
                 "hd_cv",
@@ -809,6 +810,10 @@ const docTemplate = `{
                 "hd_name"
             ],
             "properties": {
+                "hd_aboutimage": {
+                    "type": "string",
+                    "example": "http://example.com/image.jpg"
+                },
                 "hd_aboutmedesc": {
                     "type": "string",
                     "example": "I am a software engineer."
@@ -890,7 +895,7 @@ const docTemplate = `{
                 },
                 "pl_image": {
                     "type": "string",
-                    "example": "http://example.com/image.jpg"
+                    "example": ""
                 },
                 "pl_linux": {
                     "type": "string",
@@ -957,6 +962,7 @@ const docTemplate = `{
                 "sm_github",
                 "sm_instagram",
                 "sm_linkedin",
+                "sm_medium",
                 "sm_twitter",
                 "sm_whatsapp"
             ],
@@ -988,6 +994,10 @@ const docTemplate = `{
                     "type": "string",
                     "example": "john-doe-linkedin"
                 },
+                "sm_medium": {
+                    "type": "string",
+                    "example": "@ahmed_mady_medium"
+                },
                 "sm_twitter": {
                     "type": "string",
                     "example": "@ahmed_mady_twitter"
@@ -1004,7 +1014,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "golang-my-portfolio-backend.onrender.com",
+	Host:             "localhost:8080",
 	BasePath:         "/api/v1",
 	Schemes:          []string{},
 	Title:            "User API",

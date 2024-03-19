@@ -6,7 +6,7 @@
         "contact": {},
         "version": "1.0"
     },
-    "host": "golang-my-portfolio-backend.onrender.com",
+    "host": "localhost:8080",
     "basePath": "/api/v1",
     "paths": {
         "/data": {
@@ -795,6 +795,7 @@
         "HomeDetails.HomeDetails": {
             "type": "object",
             "required": [
+                "hd_aboutimage",
                 "hd_aboutmedesc",
                 "hd_aboutmename",
                 "hd_cv",
@@ -803,6 +804,10 @@
                 "hd_name"
             ],
             "properties": {
+                "hd_aboutimage": {
+                    "type": "string",
+                    "example": "http://example.com/image.jpg"
+                },
                 "hd_aboutmedesc": {
                     "type": "string",
                     "example": "I am a software engineer."
@@ -884,7 +889,7 @@
                 },
                 "pl_image": {
                     "type": "string",
-                    "example": "http://example.com/image.jpg"
+                    "example": ""
                 },
                 "pl_linux": {
                     "type": "string",
@@ -951,6 +956,7 @@
                 "sm_github",
                 "sm_instagram",
                 "sm_linkedin",
+                "sm_medium",
                 "sm_twitter",
                 "sm_whatsapp"
             ],
@@ -981,6 +987,10 @@
                 "sm_linkedin": {
                     "type": "string",
                     "example": "john-doe-linkedin"
+                },
+                "sm_medium": {
+                    "type": "string",
+                    "example": "@ahmed_mady_medium"
                 },
                 "sm_twitter": {
                     "type": "string",
