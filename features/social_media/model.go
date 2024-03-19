@@ -6,6 +6,8 @@ import (
 	"log"
 
 	"github.com/bxcodec/faker/v3"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+
 	// "go.mongodb.org/mongo-driver/bson/primitive"
 
 	mongodb "main/core/db/monodb"
@@ -13,16 +15,16 @@ import (
 
 // SocialMediaDetails represents the structure of social media details of an individual
 type SocialMedia struct {
-	ID          string `json:"sm_id" bson:"_id,omitempty"`
-	SmFacebook  string `json:"sm_facebook" example:"ahmed.mady.facebook" validate:"required"`
-	SmWhatsapp  string `json:"sm_whatsapp" example:"123456789" validate:"required"`
-	SmGithub    string `json:"sm_github" example:"ahmed_mady_github" validate:"required"`
-	SmLinkedin  string `json:"sm_linkedin" example:"john-doe-linkedin" validate:"required"`
-	SmEmail     string `json:"sm_email" example:"ahmed.mady@example.com" validate:"required"`
-	SmTwitter   string `json:"sm_twitter" example:"@ahmed_mady_twitter" validate:"required"`
-	SmCv        string `json:"sm_cv" example:"ahmed_mady_cv.pdf" validate:"required"`
-	SmInstagram string `json:"sm_instagram" example:"ahmed_mady_instagram" validate:"required"`
-	SmMedium    string `json:"sm_medium" example:"@ahmed_mady_medium" validate:"required"`
+	ID          primitive.ObjectID `json:"sm_id" bson:"_id,omitempty"`
+	SmFacebook  string             `json:"sm_facebook" example:"ahmed.mady.facebook" validate:"required"`
+	SmWhatsapp  string             `json:"sm_whatsapp" example:"123456789" validate:"required"`
+	SmGithub    string             `json:"sm_github" example:"ahmed_mady_github" validate:"required"`
+	SmLinkedin  string             `json:"sm_linkedin" example:"john-doe-linkedin" validate:"required"`
+	SmEmail     string             `json:"sm_email" example:"ahmed.mady@example.com" validate:"required"`
+	SmTwitter   string             `json:"sm_twitter" example:"@ahmed_mady_twitter" validate:"required"`
+	SmCv        string             `json:"sm_cv" example:"ahmed_mady_cv.pdf" validate:"required"`
+	SmInstagram string             `json:"sm_instagram" example:"ahmed_mady_instagram" validate:"required"`
+	SmMedium    string             `json:"sm_medium" example:"@ahmed_mady_medium" validate:"required"`
 }
 
 var CTX context.Context = context.Background()

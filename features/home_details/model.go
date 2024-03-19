@@ -5,6 +5,8 @@ import (
 	"log"
 
 	"github.com/bxcodec/faker/v3"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+
 	// "go.mongodb.org/mongo-driver/bson/primitive"
 
 	mongodb "main/core/db/monodb"
@@ -13,14 +15,14 @@ import (
 // HomeDetails represents the structure of an HomeDetails
 
 type HomeDetails struct {
-	ID            string `json:"hd_id" bson:"_id,omitempty"`
-	HdName        string `json:"hd_name" example:"My Home Details" validate:"required"`
-	HdDesc        string `json:"hd_desc" example:"Description of my home details" validate:"required"`
-	HdImage       string `json:"hd_image" example:"http://example.com/image.jpg" validate:"required"`
-	HdCv          string `json:"hd_cv" example:"http://example.com/cv.pdf" validate:"required"`
-	HdAboutmename string `json:"hd_aboutmename" example:"About Me" validate:"required"`
-	HdAboutmedesc string `json:"hd_aboutmedesc" example:"I am a software engineer." validate:"required"`
-	HdAboutImage  string `json:"hd_aboutimage" example:"http://example.com/image.jpg" validate:"required"`
+	ID            primitive.ObjectID `json:"hd_id" bson:"_id,omitempty"`
+	HdName        string             `json:"hd_name" example:"My Home Details" validate:"required"`
+	HdDesc        string             `json:"hd_desc" example:"Description of my home details" validate:"required"`
+	HdImage       string             `json:"hd_image" example:"http://example.com/image.jpg" validate:"required"`
+	HdCv          string             `json:"hd_cv" example:"http://example.com/cv.pdf" validate:"required"`
+	HdAboutmename string             `json:"hd_aboutmename" example:"About Me" validate:"required"`
+	HdAboutmedesc string             `json:"hd_aboutmedesc" example:"I am a software engineer." validate:"required"`
+	HdAboutImage  string             `json:"hd_aboutimage" example:"http://example.com/image.jpg" validate:"required"`
 }
 
 var CTX context.Context = context.Background()

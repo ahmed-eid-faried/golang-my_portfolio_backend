@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/bxcodec/faker/v3"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	// "go.mongodb.org/mongo-driver/bson/primitive"
 
 	mongodb "main/core/db/monodb"
@@ -12,7 +13,7 @@ import (
 
 // Project represents the structure of a Project
 type Project struct {
-	ID           string `json:"pl_id" bson:"_id,omitempty"`
+	ID            primitive.ObjectID  `json:"pl_id" bson:"_id,omitempty"`
 	PlTitle      string `json:"pl_title" example:"My Project" validate:"required"`
 	PlBody       string `json:"pl_body" example:"Description of my project" validate:"required"`
 	PlImage      string `json:"pl_image" example:"" validate:"required"`

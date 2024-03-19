@@ -5,6 +5,8 @@ import (
 	"log"
 
 	"github.com/bxcodec/faker/v3"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+
 	// "go.mongodb.org/mongo-driver/bson/primitive"
 
 	mongodb "main/core/db/monodb"
@@ -13,11 +15,11 @@ import (
 // Services represents the structure of an Services
 // Services represents the structure of a service
 type Service struct {
-	ID             string `json:"services_id" bson:"_id,omitempty"`
-	ServicesTitle  string `json:"services_title" example:"Web Development" validate:"required"`
-	ServicesBody   string `json:"services_body" example:"We specialize in building responsive and user-friendly websites." validate:"required"`
-	ServicesAssets string `json:"services_assets" example:"http://example.com/assets/service.jpg" validate:"required"`
-	ServicesType   string `json:"services_type" example:"Development" validate:"required"`
+	ID             primitive.ObjectID `json:"services_id" bson:"_id,omitempty"`
+	ServicesTitle  string             `json:"services_title" example:"Web Development" validate:"required"`
+	ServicesBody   string             `json:"services_body" example:"We specialize in building responsive and user-friendly websites." validate:"required"`
+	ServicesAssets string             `json:"services_assets" example:"http://example.com/assets/service.jpg" validate:"required"`
+	ServicesType   string             `json:"services_type" example:"Development" validate:"required"`
 }
 
 var CTX context.Context = context.Background()
