@@ -10,6 +10,8 @@ import (
 	_ "github.com/lib/pq"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 
 	mongodb "main/core/db/monodb"
 	_ "main/docs" // This is required for Swagger to find your documentation
@@ -79,7 +81,7 @@ func CreateHomeDetails(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
+	Index(mongodb.DB.Collection("home_details"))
 	result, err := mongodb.DB.Collection("home_details").InsertOne(context.Background(), homeDetail)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error creating home detail"})
@@ -194,4 +196,20 @@ func SearchHomeDetailses(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, homeDetails)
+}
+
+func Index(collection *mongo.Collection) {
+	// Get a handle for your collection
+	// Create indexes for auto-incrementing IDs
+	_, err := collection.Indexes().CreateOne(
+		context.Background(),
+		mongo.IndexModel{
+			Keys:    bson.D{{Key: "_id", Value: 1}},
+			Options: options.Index().SetUnique(true),
+		},
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 }

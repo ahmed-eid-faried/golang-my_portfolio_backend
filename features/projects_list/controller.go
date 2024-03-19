@@ -79,6 +79,7 @@ func CreateProject(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	// Index(mongodb.DB.Collection("projects_list"))
 
 	result, err := mongodb.DB.Collection("projects_list").InsertOne(context.Background(), project)
 	if err != nil {
