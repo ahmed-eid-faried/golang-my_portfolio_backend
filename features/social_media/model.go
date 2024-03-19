@@ -22,6 +22,7 @@ type SocialMedia struct {
 	SmTwitter   string `json:"sm_twitter" example:"@ahmed_mady_twitter" validate:"required"`
 	SmCv        string `json:"sm_cv" example:"ahmed_mady_cv.pdf" validate:"required"`
 	SmInstagram string `json:"sm_instagram" example:"ahmed_mady_instagram" validate:"required"`
+	SmMedium    string `json:"sm_medium" example:"@ahmed_mady_medium" validate:"required"`
 }
 
 var CTX context.Context = context.Background()
@@ -40,6 +41,7 @@ func InitData() {
 			SmCv:        "https://drive.google.com/file/d/1q5Vg44gRgH9Er4mCN5lYJRlVpURrBIdY/view?usp=sharing",
 			SmInstagram: "https://www.instagram.com/ahmed_eid_ac/",
 			SmTwitter:   "https://twitter.com/AHMEDMA65756172/",
+			SmMedium:    "https://medium.com/@ahmed.eid.ac.1.edu",
 		},
 	}
 	// SmEmail:     "ahmed.eid.ac.1.edu@gmail.com",
@@ -78,6 +80,7 @@ func GenerateFakeSocialMediaDetails(numSocialMediaDetails int) []interface{} {
 			SmTwitter:   sm.SmTwitter,
 			SmCv:        sm.SmCv,
 			SmInstagram: sm.SmInstagram,
+			SmMedium:    sm.SmMedium,
 		})
 	}
 	return socialMediaDetails

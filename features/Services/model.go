@@ -29,36 +29,70 @@ func InitData() {
 	services := []interface{}{
 		Service{
 			ServicesTitle:  "Web Development",
-			ServicesBody:   "We specialize in building responsive and user-friendly websites.",
-			ServicesAssets: "https://i.ibb.co/rxB4Gnm/image.jpg",
-			ServicesType:   "Development",
+			ServicesBody:   "We specialize in building responsive and user-friendly websites using React or Flutter.",
+			ServicesAssets: "https://i.ibb.co/CVndDjn/web.png",
+			ServicesType:   "Web Development",
 		},
-		// Service{
-		// 	ServicesTitle:  "Graphic Design",
-		// 	ServicesBody:   "We provide creative and innovative graphic design solutions.",
-		// 	ServicesAssets: "http://example.com/assets/design.jpg",
-		// 	ServicesType:   "Design",
-		// }, Service{
-		// 	ServicesTitle:  "Graphic Design",
-		// 	ServicesBody:   "We provide creative and innovative graphic design solutions.",
-		// 	ServicesAssets: "http://example.com/assets/design.jpg",
-		// 	ServicesType:   "Design",
-		// }, Service{
-		// 	ServicesTitle:  "Graphic Design",
-		// 	ServicesBody:   "We provide creative and innovative graphic design solutions.",
-		// 	ServicesAssets: "http://example.com/assets/design.jpg",
-		// 	ServicesType:   "Design",
-		// }, Service{
-		// 	ServicesTitle:  "Graphic Design",
-		// 	ServicesBody:   "We provide creative and innovative graphic design solutions.",
-		// 	ServicesAssets: "http://example.com/assets/design.jpg",
-		// 	ServicesType:   "Design",
-		// }, Service{
-		// 	ServicesTitle:  "Graphic Design",
-		// 	ServicesBody:   "We provide creative and innovative graphic design solutions.",
-		// 	ServicesAssets: "http://example.com/assets/design.jpg",
-		// 	ServicesType:   "Design",
-		// },
+		Service{
+			ServicesTitle:  "Mobile App Development (Android)",
+			ServicesBody:   "We develop native Android applications using Flutter or Golang.",
+			ServicesAssets: "https://i.ibb.co/j4H29rK/icons8-google-play-100.png",
+			ServicesType:   "Mobile Development",
+		},
+		Service{
+			ServicesTitle:  "Mobile App Development (iOS)",
+			ServicesBody:   "We develop native iOS applications using Flutter and Golang.",
+			ServicesAssets: "https://i.ibb.co/JCstCQH/appstore.png",
+			ServicesType:   "Mobile Development",
+		},
+		Service{
+			ServicesTitle:  "Cross-Platform App Development",
+			ServicesBody:   "We create cross-platform apps using Flutter and Golang.",
+			ServicesAssets: "https://i.ibb.co/7tD4hdX/icons8-multiple-devices-100.png",
+			ServicesType:   "Cross-Platform Development",
+		},
+		Service{
+			ServicesTitle:  "Desktop App Development (Windows)",
+			ServicesBody:   "We build desktop applications for Windows using Flutter or other technologies.",
+			ServicesAssets: "https://i.ibb.co/BZScnXb/icons8-windows-10-100.png",
+			ServicesType:   "Desktop Development",
+		},
+		Service{
+			ServicesTitle:  "Desktop App Development (Mac OS)",
+			ServicesBody:   "We build desktop applications for Mac OS using Flutter or other technologies.",
+			ServicesAssets: "https://i.ibb.co/nzmQ4FL/icons8-mac-client-64.png",
+			ServicesType:   "Desktop Development",
+		},
+		Service{
+			ServicesTitle:  "Desktop App Development (Linux)",
+			ServicesBody:   "We build desktop applications for Linux using Flutter or other technologies.",
+			ServicesAssets: "https://i.ibb.co/Q6GbLsw/icons8-linux-server-100-1.png",
+			ServicesType:   "Desktop Development",
+		},
+		Service{
+			ServicesTitle:  "Backend Development",
+			ServicesBody:   "We create robust and scalable backend solutions using Golang.",
+			ServicesAssets: "https://i.ibb.co/NYmR5Hf/icons8-backend-64.png",
+			ServicesType:   "Backend Development",
+		},
+		Service{
+			ServicesTitle:  "Package Tool Development",
+			ServicesBody:   "We develop custom package tools to streamline your development process.",
+			ServicesAssets: "https://i.ibb.co/crrsbgg/share.png",
+			ServicesType:   "Package Tool Development",
+		},
+		Service{
+			ServicesTitle:  "Embedded Systems Development",
+			ServicesBody:   "We design and develop embedded systems solutions using Golang or Flutter.",
+			ServicesAssets: "https://i.ibb.co/68rq4gN/icons8-embedded-66-1.png",
+			ServicesType:   "Embedded Systems Development",
+		},
+		Service{
+			ServicesTitle:  "CLI (Command-Line Interface) Development",
+			ServicesBody:   "We build command-line interfaces using Golang for various purposes.",
+			ServicesAssets: "https://i.ibb.co/Q8m1H46/coding.png",
+			ServicesType:   "CLI Development",
+		},
 	}
 
 	// Insert provided services into MongoDB
