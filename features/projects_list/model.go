@@ -138,7 +138,7 @@ func InitData() {
 		Project{
 			PlTitle:      "Weather",
 			PlBody:       "The Weather App is a useful and essential application available on the Google Play Store that helps you track and know the weather conditions in your area and anywhere else in the world. You can rely on this app to get accurate weather forecasts.",
-			PlImage:      "",
+			PlImage:      "https://lh3.googleusercontent.com/L7bMl39gJi3w-q9tDi8XGTjRXIppEr5oZprMPt6flxnoxIDj9QQYRQtn3HKF5_hTL1Y",
 			PlGoogleplay: "https://drive.google.com/file/d/1M4ynp3lQs0LIFym2fJt5OwZfKIlagTi1/view?usp=sharing",
 			PlGithub:     "https://github.com/ahmed-eid-faried/weather",
 			PlDoc:        "https://www.youtube.com/watch?v=4jHMKkqxFQw",
