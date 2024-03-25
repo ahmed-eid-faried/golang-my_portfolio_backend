@@ -41,20 +41,22 @@ func main() {
 	// })
 
 	// يضيف Middleware لتمكين CORS
-	router.Use(func(c *gin.Context) {
-		// تعيين رأس Access-Control-Allow-Origin للسماح لجميع المصادر بالوصول إلى الموارد
-		c.Header("Access-Control-Allow-Origin", "*")
-		// تعيين رأس Access-Control-Allow-Headers للسماح بالرؤوس المحددة
-		c.Header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin")
-		// تعيين رأس Access-Control-Allow-Methods للسماح بالطرق المحددة
-		c.Header("Access-Control-Allow-Methods", "POST, OPTIONS, GET")
-		// تجاوز الطلب OPTIONS المرسلة من المتصفح للتحقق من الإعدادات
-		if c.Request.Method == "OPTIONS" {
-			c.AbortWithStatus(200)
-			return
-		}
-		c.Next()
-	})
+	router.Use(CORSMiddleware()) // This line enables CORS for all routes
+
+	// router.Use(func(c *gin.Context) {
+	// 	// تعيين رأس Access-Control-Allow-Origin للسماح لجميع المصادر بالوصول إلى الموارد
+	// 	c.Header("Access-Control-Allow-Origin", "*")
+	// 	// تعيين رأس Access-Control-Allow-Headers للسماح بالرؤوس المحددة
+	// 	c.Header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin")
+	// 	// تعيين رأس Access-Control-Allow-Methods للسماح بالطرق المحددة
+	// 	c.Header("Access-Control-Allow-Methods", "POST, OPTIONS, GET")
+	// 	// تجاوز الطلب OPTIONS المرسلة من المتصفح للتحقق من الإعدادات
+	// 	if c.Request.Method == "OPTIONS" {
+	// 		c.AbortWithStatus(200)
+	// 		return
+	// 	}
+	// 	c.Next()
+	// })
 
 	// Serve static files (HTML, CSS, JS, etc.)
 	router.Static("/static", "./static")
@@ -149,4 +151,19 @@ func main() {
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	router.Run(":8080")
 	// defer sqldb.DB.Close()
+}
+func CORSMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Credentials", "true")
+		c.Header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		c.Header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+
+		c.Next()
+	}
 }
