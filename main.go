@@ -3,7 +3,10 @@ package main
 import (
 	// "net/http"
 	// Importing features
+	"time"
 
+	// "github.com/gin-contrib/cors"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
 	swaggerFiles "github.com/swaggo/files"
@@ -34,29 +37,23 @@ func main() {
 
 	router := gin.Default()
 
-	// // تعيين رأس "Access-Control-Allow-Origin" للسماح لجميع المصادر
-	// router.Use(func(c *gin.Context) {
-	// 	c.Header("Access-Control-Allow-Origin", "*")
-	// 	c.Next()
-	// })
-
 	// يضيف Middleware لتمكين CORS
-	router.Use(CORSMiddleware()) // This line enables CORS for all routes
-
-	// router.Use(func(c *gin.Context) {
-	// 	// تعيين رأس Access-Control-Allow-Origin للسماح لجميع المصادر بالوصول إلى الموارد
-	// 	c.Header("Access-Control-Allow-Origin", "*")
-	// 	// تعيين رأس Access-Control-Allow-Headers للسماح بالرؤوس المحددة
-	// 	c.Header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin")
-	// 	// تعيين رأس Access-Control-Allow-Methods للسماح بالطرق المحددة
-	// 	c.Header("Access-Control-Allow-Methods", "POST, OPTIONS, GET")
-	// 	// تجاوز الطلب OPTIONS المرسلة من المتصفح للتحقق من الإعدادات
-	// 	if c.Request.Method == "OPTIONS" {
-	// 		c.AbortWithStatus(200)
-	// 		return
-	// 	}
-	// 	c.Next()
-	// })
+	// CORS for https://foo.com and https://github.com origins, allowing:
+	// - PUT and PATCH methods
+	// - Origin header
+	// - Credentials share
+	// - Preflight requests cached for 12 hours
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"https://golang-my-portfolio-backend.onrender.com"},
+		AllowMethods:     []string{"PUT", "PATCH"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		AllowOriginFunc: func(origin string) bool {
+			return origin == "https://github.com"
+		},
+		MaxAge: 12 * time.Hour,
+	}))
 
 	// Serve static files (HTML, CSS, JS, etc.)
 	router.Static("/static", "./static")
@@ -152,19 +149,20 @@ func main() {
 	router.Run(":8080")
 	// defer sqldb.DB.Close()
 }
-func CORSMiddleware() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		c.Writer.Header().Set("Content-Type", "application/json")
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "https://golang-my-portfolio-backend.onrender.com")
-		c.Writer.Header().Set("Access-Control-Max-Age", "86400")
-		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, UPDATE")
-		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-Max")
-		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
-		if c.Request.Method == "OPTIONS" {
-			c.AbortWithStatus(204)
-		} else {
-			c.Next()
-		}
-		c.Next()
-	}
-}
+
+// func CORSMiddleware() gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		c.Writer.Header().Set("Content-Type", "application/json")
+// 		c.Writer.Header().Set("Access-Control-Allow-Origin", "https://golang-my-portfolio-backend.onrender.com")
+// 		c.Writer.Header().Set("Access-Control-Max-Age", "86400")
+// 		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, UPDATE")
+// 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-Max")
+// 		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+// 		if c.Request.Method == "OPTIONS" {
+// 			c.AbortWithStatus(204)
+// 		} else {
+// 			c.Next()
+// 		}
+// 		c.Next()
+// 	}
+// }
