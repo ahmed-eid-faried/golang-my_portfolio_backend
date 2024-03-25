@@ -1,7 +1,7 @@
 package main
 
 import (
-	"net/http"
+	// "net/http"
 	// Importing features
 
 	"github.com/gin-gonic/gin"
@@ -68,12 +68,12 @@ func main() {
 	// Prepare a fallback route to always serve the 'index.html', had there not be any matching routes.
 
 	// Serve static files from the "./web/build" directory.
-	router.StaticFS("/", http.Dir("./templates/Portfolio-master/build"))
+	// router.StaticFS("/", http.Dir("./templates/Portfolio-master/build"))
 
-	// Serve index.html for all non-static routes.
-	router.GET("/", func(c *gin.Context) {
-		c.File("./templates/Portfolio-master/build/index.html")
-	})
+	// // Serve index.html for all non-static routes.
+	// router.GET("/", func(c *gin.Context) {
+	// 	c.File("./templates/Portfolio-master/build/index.html")
+	// })
 
 	// Handle 404 errors
 	router.NoRoute(func(c *gin.Context) {
