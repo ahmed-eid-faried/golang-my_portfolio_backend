@@ -204,6 +204,52 @@ paths:
       summary: Put All Data
       tags:
       - AllData
+  /data/messages:
+    post:
+      consumes:
+      - application/json
+      description: Send a message
+      operationId: send-message
+      parameters:
+      - description: Name
+        in: query
+        name: cm_name
+        required: true
+        type: string
+      - description: Address
+        in: query
+        name: cm_address
+        required: true
+        type: string
+      - description: Phone Number
+        in: query
+        name: cm_number
+        required: true
+        type: string
+      - description: Subject
+        in: query
+        name: cm_subject
+        required: true
+        type: string
+      - description: Message
+        in: query
+        name: cm_message
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Message sent successfully
+          schema:
+            type: string
+        "400":
+          description: Bad request
+          schema:
+            type: string
+      summary: Send a message
+      tags:
+      - Send A Message
   /home_details:
     delete:
       description: Delete all home details from MongoDB

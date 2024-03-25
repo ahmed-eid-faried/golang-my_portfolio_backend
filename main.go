@@ -139,6 +139,8 @@ func main() {
 			data.GET("/", alldata.GetAllData)
 			data.GET("/init", alldata.PostAllData)
 			data.DELETE("/", alldata.DeleteAllData)
+			data.POST("/messages", alldata.SendMessage)
+
 		}
 
 	}
