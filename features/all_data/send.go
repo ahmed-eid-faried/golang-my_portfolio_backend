@@ -46,10 +46,11 @@ func SendMessage(c *gin.Context) {
 
 func SendEmail(name, address, number, subject, message string) error {
 	// Set up authentication credentials
-	auth := smtp.PlainAuth("", "your-email@example.com", "your-password", "smtp.example.com")
+	auth := smtp.PlainAuth("", "ahmed.eid.ac.1.edu@gmail.com", "A1S2D3F4G5H6J7K8L954321", "smtp.gmail.com")
 
 	// Set up email headers and body
-	email := fmt.Sprintf("To: recipient@example.com\r\n"+
+	email := fmt.Sprintf("From: ahmed.eid.ac.1.edu@gmail.com\r\n"+
+		"To: ahmed.eid.ac.1.edu@gmail.com, ahmedmadyprof@gmail.com, ahmedmadyprof2@gmail.com\r\n"+
 		"Subject: %s\r\n"+
 		"\r\n"+
 		"Name: %s\r\n"+
@@ -59,7 +60,7 @@ func SendEmail(name, address, number, subject, message string) error {
 		"Message: %s\r\n", subject, name, address, number, subject, message)
 
 	// Send email
-	err := smtp.SendMail("smtp.example.com:587", auth, "your-email@example.com", []string{"recipient@example.com"}, []byte(email))
+	err := smtp.SendMail("smtp.gmail.com:587", auth, "ahmed.eid.ac.1.edu@gmail.com", []string{"ahmedmadyprof@gmail.com", "ahmedmadyprof2@gmail.com"}, []byte(email))
 	if err != nil {
 		return err
 	}
