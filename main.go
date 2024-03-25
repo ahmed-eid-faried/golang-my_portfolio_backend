@@ -34,13 +34,45 @@ func main() {
 
 	router := gin.Default()
 
+	// // تعيين رأس "Access-Control-Allow-Origin" للسماح لجميع المصادر
+	// router.Use(func(c *gin.Context) {
+	// 	c.Header("Access-Control-Allow-Origin", "*")
+	// 	c.Next()
+	// })
+
+	// يضيف Middleware لتمكين CORS
+	router.Use(func(c *gin.Context) {
+		// تعيين رأس Access-Control-Allow-Origin للسماح لجميع المصادر بالوصول إلى الموارد
+		c.Header("Access-Control-Allow-Origin", "*")
+		// تعيين رأس Access-Control-Allow-Headers للسماح بالرؤوس المحددة
+		c.Header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin")
+		// تعيين رأس Access-Control-Allow-Methods للسماح بالطرق المحددة
+		c.Header("Access-Control-Allow-Methods", "POST, OPTIONS, GET")
+		// تجاوز الطلب OPTIONS المرسلة من المتصفح للتحقق من الإعدادات
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(200)
+			return
+		}
+		c.Next()
+	})
+
 	// Serve static files (HTML, CSS, JS, etc.)
 	router.Static("/static", "./static")
 	router.Static("/docs", "./docs")
 
-	// Define routes
+	// // Define routes
+	// router.GET("/", func(c *gin.Context) {
+	// 	c.String(http.StatusOK, "Hello, World!")
+	// })
+
+	// Prepare a fallback route to always serve the 'index.html', had there not be any matching routes.
+
+	// Serve static files from the "./web/build" directory.
+	router.StaticFS("/", http.Dir("./templates/Portfolio-master/build"))
+
+	// Serve index.html for all non-static routes.
 	router.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "Hello, World!")
+		c.File("./templates/Portfolio-master/build/index.html")
 	})
 
 	// Handle 404 errors
