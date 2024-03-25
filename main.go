@@ -37,22 +37,25 @@ func main() {
 
 	router := gin.Default()
 
-	// يضيف Middleware لتمكين CORS
-	// CORS for https://foo.com and https://github.com origins, allowing:
-	// - PUT and PATCH methods
-	// - Origin header
-	// - Credentials share
-	// - Preflight requests cached for 12 hours
+	// Initialize the CORS middleware with a config object
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"https://golang-my-portfolio-backend.onrender.com"},
-		AllowMethods:     []string{"PUT", "PATCH"},
-		AllowHeaders:     []string{"Origin"},
-		ExposeHeaders:    []string{"Content-Length"},
+		AllowOrigins: []string{"https://golang-my-portfolio-backend.onrender.com"},
+		// Specifies the origins allowed to access the API
+		AllowMethods: []string{"PUT", "PATCH"},
+		// Specifies the allowed HTTP methods for cross-origin requests
+		AllowHeaders: []string{"Origin"},
+		// Specifies additional headers allowed for cross-origin requests
+		ExposeHeaders: []string{"Content-Length"},
+		// Specifies the headers that can be exposed from the response
 		AllowCredentials: true,
+		// Allows sending credentials (cookies, HTTP Authentication, and client-side SSL certificates)
 		AllowOriginFunc: func(origin string) bool {
+			// Allow cross-origin requests from the specified origin
+			// Used for handling dynamic origin values or additional checks
 			return origin == "https://github.com"
 		},
 		MaxAge: 12 * time.Hour,
+		// Sets the inactivity timeout for pre-flight requests (default 12 hours)
 	}))
 
 	// Serve static files (HTML, CSS, JS, etc.)
