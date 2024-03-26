@@ -41,21 +41,6 @@ func main() {
 	router.Static("/static", "./static")
 	router.Static("/docs", "./docs")
 
-	// // Define routes
-	// router.GET("/", func(c *gin.Context) {
-	// 	c.String(http.StatusOK, "Hello, World!")
-	// })
-
-	// Prepare a fallback route to always serve the 'index.html', had there not be any matching routes.
-
-	// Serve static files from the "./web/build" directory.
-	// router.StaticFS("/", http.Dir("./templates/Portfolio-master/build"))
-
-	// // Serve index.html for all non-static routes.
-	// router.GET("/", func(c *gin.Context) {
-	// 	c.File("./templates/Portfolio-master/build/index.html")
-	// })
-
 	// Handle 404 errors
 	router.NoRoute(func(c *gin.Context) {
 		c.File("./templates/404.html")
@@ -136,56 +121,15 @@ func main() {
 	// defer sqldb.DB.Close()
 }
 
-// func CORSMiddleware() gin.HandlerFunc {
-// 	return func(c *gin.Context) {
-// 		c.Writer.Header().Set("Content-Type", "application/json")
-// 		c.Writer.Header().Set("Access-Control-Allow-Origin", "https://golang-my-portfolio-backend.onrender.com")
-// 		c.Writer.Header().Set("Access-Control-Max-Age", "86400")
-// 		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, UPDATE")
-// 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-Max")
-// 		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
-// 		if c.Request.Method == "OPTIONS" {
-// 			c.AbortWithStatus(204)
-// 		} else {
-// 			c.Next()
-// 		}
-// 		c.Next()
-// 	}
-// }
-
-// // Initialize the CORS middleware with a config object
-// router.Use(cors.New(cors.Config{
-// 	AllowOrigins: []string{"https://golang-my-portfolio-backend.onrender.com"},
-// 	// Specifies the origins allowed to access the API
-// 	AllowMethods: []string{"PUT", "PATCH"},
-// 	// Specifies the allowed HTTP methods for cross-origin requests
-// 	AllowHeaders: []string{"Origin"},
-// 	// Specifies additional headers allowed for cross-origin requests
-// 	ExposeHeaders: []string{"Content-Length"},
-// 	// Specifies the headers that can be exposed from the response
-// 	AllowCredentials: true,
-// 	// Allows sending credentials (cookies, HTTP Authentication, and client-side SSL certificates)
-// 	AllowOriginFunc: func(origin string) bool {
-// 		// Allow cross-origin requests from the specified origin
-// 		// Used for handling dynamic origin values or additional checks
-// 		return origin == "https://github.com"
-// 	},
-// 	MaxAge: 12 * time.Hour,
-// 	// Sets the inactivity timeout for pre-flight requests (default 12 hours)
-// }))
-
 // enableCORS is a middleware to enable CORS
 func enableCORS() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// Allow requests from any origin
 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
-
 		// Allow specified HTTP methods
 		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, UPDATE, PATCH, DELETE, OPTIONS")
-
 		// Allow specified headers
 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin")
-
 		// Continue with the next handler
 		c.Next()
 	}
