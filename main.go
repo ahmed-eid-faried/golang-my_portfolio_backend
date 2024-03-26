@@ -3,10 +3,9 @@ package main
 import (
 	// "net/http"
 	// Importing features
-	"time"
+	"net/http"
 
 	// "github.com/gin-contrib/cors"
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
 	swaggerFiles "github.com/swaggo/files"
@@ -37,26 +36,7 @@ func main() {
 
 	router := gin.Default()
 
-	// Initialize the CORS middleware with a config object
-	router.Use(cors.New(cors.Config{
-		AllowOrigins: []string{"https://golang-my-portfolio-backend.onrender.com"},
-		// Specifies the origins allowed to access the API
-		AllowMethods: []string{"PUT", "PATCH"},
-		// Specifies the allowed HTTP methods for cross-origin requests
-		AllowHeaders: []string{"Origin"},
-		// Specifies additional headers allowed for cross-origin requests
-		ExposeHeaders: []string{"Content-Length"},
-		// Specifies the headers that can be exposed from the response
-		AllowCredentials: true,
-		// Allows sending credentials (cookies, HTTP Authentication, and client-side SSL certificates)
-		AllowOriginFunc: func(origin string) bool {
-			// Allow cross-origin requests from the specified origin
-			// Used for handling dynamic origin values or additional checks
-			return origin == "https://github.com"
-		},
-		MaxAge: 12 * time.Hour,
-		// Sets the inactivity timeout for pre-flight requests (default 12 hours)
-	}))
+	router.Use(enableCORS())
 
 	// Serve static files (HTML, CSS, JS, etc.)
 	router.Static("/static", "./static")
@@ -85,6 +65,8 @@ func main() {
 	// Define API versioning group
 	v1 := router.Group("/api/v1")
 	{
+		v1.Use(enableCORS())
+
 		// Grouping routes related to home details management
 		hdRoute := v1.Group("/home_details")
 		{
@@ -138,6 +120,8 @@ func main() {
 		}
 		data := v1.Group("/data")
 		{
+			data.Use(enableCORS())
+
 			data.GET("/", alldata.GetAllData)
 			data.GET("/init", alldata.PostAllData)
 			data.DELETE("/", alldata.DeleteAllData)
@@ -169,3 +153,47 @@ func main() {
 // 		c.Next()
 // 	}
 // }
+
+// // Initialize the CORS middleware with a config object
+// router.Use(cors.New(cors.Config{
+// 	AllowOrigins: []string{"https://golang-my-portfolio-backend.onrender.com"},
+// 	// Specifies the origins allowed to access the API
+// 	AllowMethods: []string{"PUT", "PATCH"},
+// 	// Specifies the allowed HTTP methods for cross-origin requests
+// 	AllowHeaders: []string{"Origin"},
+// 	// Specifies additional headers allowed for cross-origin requests
+// 	ExposeHeaders: []string{"Content-Length"},
+// 	// Specifies the headers that can be exposed from the response
+// 	AllowCredentials: true,
+// 	// Allows sending credentials (cookies, HTTP Authentication, and client-side SSL certificates)
+// 	AllowOriginFunc: func(origin string) bool {
+// 		// Allow cross-origin requests from the specified origin
+// 		// Used for handling dynamic origin values or additional checks
+// 		return origin == "https://github.com"
+// 	},
+// 	MaxAge: 12 * time.Hour,
+// 	// Sets the inactivity timeout for pre-flight requests (default 12 hours)
+// }))
+
+// enableCORS is a middleware to enable CORS
+func enableCORS() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// Allow requests from any origin
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+
+		// Allow specified HTTP methods
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+
+		// Allow specified headers
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, Accept")
+
+		// Check if it's a preflight request and handle it
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(http.StatusOK)
+			return
+		}
+
+		// Continue with the next handler
+		c.Next()
+	}
+}
