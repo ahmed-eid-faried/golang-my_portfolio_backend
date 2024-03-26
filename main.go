@@ -5,6 +5,7 @@ import (
 	// Importing features
 
 	// "github.com/gin-contrib/cors"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
 	swaggerFiles "github.com/swaggo/files"
@@ -35,7 +36,12 @@ func main() {
 
 	router := gin.Default()
 
-	router.Use(enableCORS())
+	// router.Use(enableCORS())
+	// CORS middleware configuration
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"https://ahmed-eid-faried.github.io"} // Update with your Flutter frontend URL
+	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}
+	router.Use(cors.New(config))
 
 	// Serve static files (HTML, CSS, JS, etc.)
 	router.Static("/static", "./static")
@@ -49,7 +55,8 @@ func main() {
 	// Define API versioning group
 	v1 := router.Group("/api/v1")
 	{
-		v1.Use(enableCORS())
+		// v1.Use(enableCORS())
+		v1.Use(cors.New(config))
 
 		// Grouping routes related to home details management
 		hdRoute := v1.Group("/home_details")
@@ -104,7 +111,8 @@ func main() {
 		}
 		data := v1.Group("/data")
 		{
-			data.Use(enableCORS())
+			// data.Use(enableCORS())
+			data.Use(cors.New(config))
 
 			data.GET("/", alldata.GetAllData)
 			data.GET("/init", alldata.PostAllData)
