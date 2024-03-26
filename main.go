@@ -126,10 +126,12 @@ func enableCORS() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// Allow requests from any origin
 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		// Allow requests from any origin
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
 		// Allow specified HTTP methods
-		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, UPDATE, PATCH, DELETE, OPTIONS")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, HEAD, PUT, UPDATE, PATCH, DELETE, OPTIONS")
 		// Allow specified headers
-		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Origin,Accept, Access-Control-Allow-Headers, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin")
 		// Continue with the next handler
 		c.Next()
 	}
