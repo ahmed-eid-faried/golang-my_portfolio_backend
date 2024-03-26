@@ -39,8 +39,11 @@ func main() {
 	// router.Use(enableCORS())
 	// CORS middleware configuration
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"https://ahmed-eid-faried.github.io"} // Update with your Flutter frontend URL
-	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}
+	config.AllowOrigins = []string{"*"} // Update with your Flutter frontend URL
+	config.AllowMethods = []string{"GET", "POST", "PUT", "HEAD", "DELETE", "UPDATE", "PATCH", "OPTIONS"}
+	config.AllowHeaders = []string{"Content-Type", "Origin", "Accept", "Access-Control-Allow-Headers", "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization", "X-Requested-With", "Access-Control-Allow-Origin"}
+	config.AllowCredentials = true
+
 	router.Use(cors.New(config))
 
 	// Serve static files (HTML, CSS, JS, etc.)
@@ -61,6 +64,8 @@ func main() {
 		// Grouping routes related to home details management
 		hdRoute := v1.Group("/home_details")
 		{
+			hdRoute.Use(cors.New(config))
+
 			// HomeDetails routes
 			hdRoute.POST("/", home_details.CreateHomeDetails)
 			hdRoute.PUT("/:id", home_details.UpdateHomeDetails)
@@ -74,6 +79,8 @@ func main() {
 		// Grouping routes related to social media management
 		smRoute := v1.Group("/social_media")
 		{
+			smRoute.Use(cors.New(config))
+
 			// SocialMedia routes
 			smRoute.POST("/", social_media.CreateSocialMediaDetails)
 			smRoute.PUT("/:id", social_media.UpdateSocialMediaDetails)
@@ -87,6 +94,8 @@ func main() {
 		// Grouping routes related to projects management
 		projectsRoute := v1.Group("/projects")
 		{
+			projectsRoute.Use(cors.New(config))
+
 			// Projects routes
 			projectsRoute.POST("/", projects.CreateProject)
 			projectsRoute.PUT("/:id", projects.UpdateProject)
@@ -100,6 +109,8 @@ func main() {
 		// Grouping routes related to services management
 		sRoute := v1.Group("/services")
 		{
+			sRoute.Use(cors.New(config))
+
 			// Services routes
 			sRoute.POST("/", services.CreateServices)
 			sRoute.PUT("/:id", services.UpdateServices)
@@ -111,7 +122,7 @@ func main() {
 		}
 		data := v1.Group("/data")
 		{
-			// data.Use(enableCORS())
+			// data.Use(enableCORS())s
 			data.Use(cors.New(config))
 
 			data.GET("/", alldata.GetAllData)
@@ -129,18 +140,18 @@ func main() {
 	// defer sqldb.DB.Close()
 }
 
-// enableCORS is a middleware to enable CORS
-func enableCORS() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		// Allow requests from any origin
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
-		// Allow requests from any origin
-		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
-		// Allow specified HTTP methods
-		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, HEAD, PUT, UPDATE, PATCH, DELETE, OPTIONS")
-		// Allow specified headers
-		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Origin,Accept, Access-Control-Allow-Headers, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin")
-		// Continue with the next handler
-		c.Next()
-	}
-}
+// // enableCORS is a middleware to enable CORS
+// func enableCORS() gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		// Allow requests from any origin
+// 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+// 		// Allow requests from any origin
+// 		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+// 		// Allow specified HTTP methods
+// 		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, HEAD, PUT, UPDATE, PATCH, DELETE, OPTIONS")
+// 		// Allow specified headers
+// 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Origin,Accept, Access-Control-Allow-Headers, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin")
+// 		// Continue with the next handler
+// 		c.Next()
+// 	}
+// }
