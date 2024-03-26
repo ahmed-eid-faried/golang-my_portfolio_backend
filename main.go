@@ -181,11 +181,14 @@ func enableCORS() gin.HandlerFunc {
 		// Allow requests from any origin
 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
 
+		// // Allow specified headers
+		// c.Writer.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, Accept")
+
 		// Allow specified HTTP methods
-		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
 
 		// Allow specified headers
-		c.Writer.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, Accept")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 
 		// Check if it's a preflight request and handle it
 		if c.Request.Method == "OPTIONS" {
